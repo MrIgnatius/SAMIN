@@ -1,0 +1,6 @@
+{
+  "name": "SAMIN - Southern Africa Migration Network",
+  "description": "Advocating for the rights, dignity, and inclusion of refugees and migrants across Southern Africa since 2019.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

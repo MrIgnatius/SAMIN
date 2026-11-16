@@ -1,0 +1,192 @@
+@import "tailwindcss";
+
+@theme {
+  --font-heading: 'Sora', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+@layer base {
+  :root {
+    /* Elementor Global Colors Mapping */
+    --samin-navy: #051650;
+    --samin-navy-dark: #020b2b;
+    --samin-navy-light: #0d267d;
+    --samin-gold: #FAC775;
+    --samin-gold-hover: #f5b952;
+    --samin-gold-soft: #fdf3df;
+    --samin-bg: #F2F2F2;
+    --samin-white: #FFFFFF;
+    --samin-muted: #536280;
+    --samin-border: rgba(5, 22, 80, 0.12);
+    --samin-border-dark: rgba(250, 199, 117, 0.25);
+
+    /* Premium & Award-Winning Typography: Sora (Headings) & Inter (Body) */
+    --font-heading: 'Sora', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-serif: 'Fraunces', Georgia, serif;
+
+    /* Elementor Spacing & Radii */
+    --radius-button: 9999px;
+    --radius-card: 16px;
+    --radius-card-sm: 8px;
+    --container-max: 1280px;
+
+    /* =========================================================================
+       LYTBOX STICKY REVEAL HEADER CONTROLS (From https://css.glass)
+       ========================================================================= */
+    --lytbox-anim-ms: 220ms;
+    --lytbox-sticky-bg: rgba(0, 76, 199, 0.58);
+    --lytbox-sticky-blur: 10.3px;
+    --lytbox-sticky-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    --lytbox-sticky-border: rgba(0, 76, 199, 0.34);
+  }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--samin-navy);
+    background-color: var(--samin-bg);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-heading, .font-serif-heading {
+    font-family: var(--font-heading);
+    letter-spacing: -0.025em;
+  }
+}
+
+.font-heading {
+  font-family: var(--font-heading) !important;
+}
+
+.font-body {
+  font-family: var(--font-body) !important;
+}
+
+.font-sora {
+  font-family: 'Sora', system-ui, -apple-system, sans-serif !important;
+}
+
+.font-inter {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+}
+
+/* =========================================================================
+   LYTBOX HEADER ENGINE CLASSES (Fluent Snippets / Elementor)
+   ========================================================================= */
+.lytbox-no-trans {
+  transition: none !important;
+}
+
+/* Base Header: normal flow at page top (or absolute overlay) */
+.lytbox-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 100;
+  transition: transform var(--lytbox-anim-ms, 220ms) cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.3s ease,
+              padding 0.3s ease,
+              box-shadow 0.3s ease;
+  will-change: transform;
+}
+
+/* Sticky state: hidden off-screen (-110%) ready to reveal */
+.lytbox-header.lytbox-is-sticky {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  transform: translateY(-110%);
+  transition: transform var(--lytbox-anim-ms, 220ms) cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+  /* From https://css.glass */
+  background: rgba(0, 76, 199, 0.58);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10.3px);
+  -webkit-backdrop-filter: blur(10.3px);
+  border: 1px solid rgba(0, 76, 199, 0.34);
+}
+
+/* Slide in when revealed */
+.lytbox-header.lytbox-is-sticky.lytbox-show {
+  transform: translateY(0);
+}
+
+/* Floating Island Style Option (Screenshot 1: fully rounded pill island centered on screen) */
+.lytbox-header.lytbox-is-sticky.lytbox-island-mode {
+  top: 14px;
+  left: 16px;
+  right: 16px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  /* Capsule Pill Rounded - Screenshot 1 */
+  border-radius: 9999px;
+  background: rgba(0, 76, 199, 0.58);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1), 0 10px 25px -5px rgba(0, 76, 199, 0.25);
+  backdrop-filter: blur(10.3px);
+  -webkit-backdrop-filter: blur(10.3px);
+  border: 1px solid rgba(0, 76, 199, 0.34);
+}
+
+/* =========================================================================
+   LOGO SWAP MECHANISM (Lytbox Step 2: 2:27 - 5:34)
+   logo-1 shows in normal top flow; logo-2 shows when sticky revealed!
+   ========================================================================= */
+.lytbox-header .logo-1 {
+  display: flex !important;
+}
+.lytbox-header .logo-2 {
+  display: none !important;
+}
+
+.lytbox-header.lytbox-is-sticky .logo-1 {
+  display: none !important;
+}
+.lytbox-header.lytbox-is-sticky .logo-2 {
+  display: flex !important;
+}
+
+/* Glassmorphism for dark section cards */
+.samin-glass-card {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(250, 199, 117, 0.18);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.samin-glass-card:hover {
+  border-color: rgba(250, 199, 117, 0.5);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5), 0 0 25px -5px rgba(250, 199, 117, 0.15);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #020b2b;
+}
+::-webkit-scrollbar-thumb {
+  background: #FAC775;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #f5b952;
+}
+
+/* Reduced Motion Fallback */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
